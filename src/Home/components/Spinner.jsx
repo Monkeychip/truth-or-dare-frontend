@@ -33,9 +33,8 @@ class Spinner extends React.Component {
 
   componentDidMount() {
     let test = document.querySelectorAll('.sec');
-    test.forEach((i) => {
-      let t = i;
-      console.log(t,'here')      
+    test.forEach((item) => {
+      console.log(item,'item')      
     });
 
   }
