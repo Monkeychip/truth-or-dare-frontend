@@ -1,12 +1,7 @@
 import * as React from 'react';
 import './TruthOrDare.css';
 
-// const STATUS_SPINNING = 'spinning';
-// const STATUS_READY = 'ready';
-const { Fragment } = React;
-
-
-class SpinArea extends React.Component {
+class SectionArea extends React.Component {
 
   render() {
     const { spinners } = this.props;
@@ -23,4 +18,4 @@ class SpinArea extends React.Component {
   };
 }
 
-export default SpinArea;
+export default SectionArea;
