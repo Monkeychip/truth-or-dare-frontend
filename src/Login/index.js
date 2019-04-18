@@ -19,23 +19,23 @@ class Login extends React.Component {
  }
 
  async componentDidMount() {
-   this.checkAuthentication()
+  //  this.checkAuthentication()
  }
 
  async login(e) {
-   this.props.auth.login('/home');
+  //  this.props.auth.login('/home');
  }
 
  render() {
-   if (this.state.authenticated) {
+  //  if (this.state.authenticated) {
      return <Redirect to='/home' />
-   } else {
-     return (
-       <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-         <Button variant="contained" color="primary" onClick={this.login}>Login with Okta</Button>
-       </div>
-     )
-   }
+  //  } else {
+  //    return (
+  //      <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+  //        <Button variant="contained" color="primary" onClick={this.login}>Login with Okta</Button>
+  //      </div>
+  //    )
+  //  }
  }
 }
 

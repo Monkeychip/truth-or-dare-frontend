@@ -9,18 +9,13 @@ class Main extends Component {
  render() {
    return (
      <Router>
-       <Security
-         issuer={'https://dev-261763.okta.com'}
-         client_id={'0oafmazg65fYoO519356'}
-         redirect_uri={'http://localhost:8080/implicit/callback'}
-         scope={['openid', 'profile', 'email']}>
-        
+       
          <Switch>
            <Route exact path="/" component={Login} />
            <Route path="/implicit/callback" component={ImplicitCallback} />
-           <SecureRoute path="/home" component={Home} />
+           <Route path="/home" component={Home} />
          </Switch>
-       </Security>
+
      </Router>
    );
  }

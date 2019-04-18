@@ -13,33 +13,22 @@ class WholeSpinner extends React.Component {
   	super(props);
     
     this.state = { 
-      done: false,
       spinningStatus: false, // parent starts state as false 
+      degrees: 1800, // parent starts degrees at 1800
     }
     this.startSpinner = null;
   }
 
   startWheelSpin = () => {
+    let newDegree = Math.floor(Math.random() * 3300);
     this.setState({ // sending state to child component SpinMe
-      spinningStatus: true
+      degrees: newDegree,
+      spinningStatus: true,
     });
   }
 
-
-  componentDidUpdate(prevProps) {
-    console.log(prevProps,"updated");
-  	if (prevProps.spinningStatus ) { // it's spinning
-   		clearTimeout(this.startSpinner);
-    	this.setState({ spinningStatus: false });
-      this.startSpinner = setTimeout(() => {
-        this.setState({ spinningStatus: true });
-        console.log('insidestartspinner')
-      }, 1000);
-    }
-  }
-  
-  componentWillUnmount() {
-	  // clearTimeout(this.startSpinner);
+  componentDidUpdate(prevProps) { //ARG I don't think this is doing anything yet
+ 
   }
   
   componentDidMount() {
@@ -48,16 +37,16 @@ class WholeSpinner extends React.Component {
   
   render() {
     // ARG degree will eventually have to come from somewhere
-    const rotate = keyframes`
-      to {
-        transform: rotate(1800deg); 
-      }
-    `;
+    // const rotate = keyframes`
+    //   to {
+    //     transform: rotate(${this.state.degrees}deg); 
+    //   }
+    // `;
 
     const InnerWheel = styled.div`
-      animation: ${rotate};
-      animation-duration: 1s;
-    `;
+      transform: rotate(${this.state.degrees}deg);
+      transition: all 6s cubic-bezier(0, .99, .44, .99); 
+    `; // ARG something about how this is being rendered, play with timing . 
 
     const spinnerAreasArray = ['test1','test2','test3','test4','test5','test6']; 
 
@@ -71,9 +60,7 @@ class WholeSpinner extends React.Component {
             <SpinMe 
               startSpinner={this.startWheelSpin}
             />
-            <div id="shine"></div>
           </div>
-        <div id="txt"></div>
       </div>
       </Fragment>
     );
