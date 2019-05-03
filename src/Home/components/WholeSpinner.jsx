@@ -57,7 +57,7 @@ class WholeSpinner extends React.Component {
         <div className="cta-buttons">
           <a href="#" target="_blank" className="truth btn outline">
             <span className="unskew">Truth</span>
-          </a>&nbsp;
+          </a>
           <a href="#" target="_blank" className="dare btn outline">
             <span className="unskew">Dare</span>
           </a>
