@@ -43,10 +43,11 @@ class WholeSpinner extends React.Component {
     //   }
     // `;
 
-    const InnerWheel = styled.div`
-      transform: rotate(${this.state.degrees}deg);
-      transition: all 6s cubic-bezier(0, .99, .44, .99); 
-    `; // ARG something about how this is being rendered, play with timing . 
+    const styles = {
+      transform: `rotate(${this.state.degrees}deg)` ,
+      transition: `all 6s cubic-bezier(0, .99, .44, .99)`,
+    };
+
 
     const spinnerAreasArray = ['test1','test2','test3','test4','test5','test6']; 
 
@@ -54,9 +55,9 @@ class WholeSpinner extends React.Component {
       <Fragment>
         <div id="wrapper">
           <div id="wheel">
-            <InnerWheel id="innerWheel">
+            <div id="innerWheel" style={styles}>
                 <SectionArea spinners={spinnerAreasArray} />
-            </InnerWheel>
+            </div>
             <SpinMe 
               startSpinner={this.startWheelSpin}
             />
