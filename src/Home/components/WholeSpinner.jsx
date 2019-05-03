@@ -54,12 +54,21 @@ class WholeSpinner extends React.Component {
   	return (
       <Fragment>
         <div id="wrapper">
+        <div className="cta-buttons">
+          <a href="#" target="_blank" className="truth btn outline">
+            <span className="unskew">Truth</span>
+          </a>&nbsp;
+          <a href="#" target="_blank" className="dare btn outline">
+            <span className="unskew">Dare</span>
+          </a>
+        </div>
           <div id="wheel">
             <div id="innerWheel" style={styles}>
                 <SectionArea spinners={spinnerAreasArray} />
             </div>
             <SpinMe 
               startSpinner={this.startWheelSpin}
+              degrees={this.state.degrees}
             />
           </div>
       </div>

@@ -9,7 +9,6 @@ class SpinMe extends React.Component {
     
     this.state = { 
       clicks: 0,
-      degree: 1800,
       done: false,
       spinningStatus: this.props.spinningStatus,
     }
@@ -49,16 +48,19 @@ class SpinMe extends React.Component {
         transform: rotate(7deg);
       }
     `;
-// ARG need to come up with variables for duration and count
+    const spinCount = this.props.degrees/ 260 // ARG: revisit
+
     const Spinner = styled.div`
       animation: ${spinTheSpinner};
       animation-duration: .2s;
-      animation-iteration-count: 4;  
+      animation-iteration-count: ${spinCount};
     `;
-    //onClick={ this.onSpinnerClick}
+
   	return (
       <Spinner id="spin" onClick={this.onSpinnerClick}>
-          <div id="innerSpin"></div>
+          <div id="innerSpin">
+            <p>SPIN</p>
+          </div>
       </Spinner>
     );
   }
