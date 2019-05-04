@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './TruthOrDare.css';
+import 'typeface-roboto';
 
 class SectionArea extends React.Component {
 

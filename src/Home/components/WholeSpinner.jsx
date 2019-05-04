@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './TruthOrDare.css';
+import SimpleModalWrapped from './Modal';
 import SectionArea from './SectionArea';
 import SpinMe from './SpinMe';
 import styled, { keyframes } from 'styled-components';
@@ -13,8 +14,8 @@ class WholeSpinner extends React.Component {
   	super(props);
     
     this.state = { 
-      spinningStatus: false, // parent starts state as false 
       degrees: 1800, // parent starts degrees at 1800
+      spinningStatus: false, // parent starts state as false 
     }
     this.startSpinner = null;
   }
@@ -36,41 +37,27 @@ class WholeSpinner extends React.Component {
   }
   
   render() {
-    // ARG degree will eventually have to come from somewhere
-    // const rotate = keyframes`
-    //   to {
-    //     transform: rotate(${this.state.degrees}deg); 
-    //   }
-    // `;
 
     const styles = {
       transform: `rotate(${this.state.degrees}deg)` ,
       transition: `all 6s cubic-bezier(0, .99, .44, .99)`,
     };
 
-
     const spinnerAreasArray = ['test1','test2','test3','test4','test5','test6']; 
 
   	return (
       <Fragment>
         <div id="wrapper">
-        <div className="cta-buttons">
-          <a href="#" target="_blank" className="truth btn outline">
-            <span className="unskew">Truth</span>
-          </a>
-          <a href="#" target="_blank" className="dare btn outline">
-            <span className="unskew">Dare</span>
-          </a>
-        </div>
-          <div id="wheel">
-            <div id="innerWheel" style={styles}>
-                <SectionArea spinners={spinnerAreasArray} />
-            </div>
-            <SpinMe 
-              startSpinner={this.startWheelSpin}
-              degrees={this.state.degrees}
-            />
+        <SimpleModalWrapped />
+        <div id="wheel">
+          <div id="innerWheel" style={styles}>
+              <SectionArea spinners={spinnerAreasArray} />
           </div>
+          <SpinMe 
+            startSpinner={this.startWheelSpin}
+            degrees={this.state.degrees}
+          />
+        </div>
       </div>
       </Fragment>
     );
