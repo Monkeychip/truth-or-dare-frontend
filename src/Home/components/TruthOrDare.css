@@ -198,9 +198,6 @@ body {
 	background-color: #ff0077;
 	color: #fff;
 }
-.outline {
-	transition: all 0.3s;
-}
 
 .truth:hover {
 	background-color: rgba(255,255,255, 0.9);
@@ -208,7 +205,10 @@ body {
 .dare:hover {
 	background-color: rgba(255,0,119,.9)
 }
-
+/* remove blue outline */
+button:focus {
+	outline:0;
+}
 /* Material Modal*/
 .button-holder {
 	margin-top: 31px;
