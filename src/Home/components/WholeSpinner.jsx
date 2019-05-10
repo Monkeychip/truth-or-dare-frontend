@@ -14,7 +14,7 @@ class WholeSpinner extends React.Component {
   	super(props);
     
     this.state = { 
-      degrees: 1800, // parent starts degrees at 1800
+      degrees: 0, // parent starts degrees at 1800
       modalStatus: false, // keep modal closed for now
       questionList: [],
     }
