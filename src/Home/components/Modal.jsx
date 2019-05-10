@@ -44,22 +44,21 @@ class SimpleModal extends React.Component {
   };
 
   handleClose = () => {
+    this.props.handleOpen(false);
     this.setState({ open: false });
   };
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.open !== this.props.open){
+        this.setState({ open : nextProps.open });
+    }
+  }
+
   render() {
     const { classes } = this.props;
-
+    console.log(this.state.open,'this.state.open in modal STATE')
     return (
       <div>
-        <div className="cta-buttons">
-          <button onClick={this.handleOpen} className="truth btn outline place-order">
-            <span className="fa fa-shopping-cart">Truth</span>
-          </button>
-          <button onClick={this.handleOpen} className="dare btn outline">
-            <span className="fa fa-shopping-cart">Dare</span>
-          </button>
-        </div>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

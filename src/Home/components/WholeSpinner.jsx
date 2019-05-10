@@ -15,8 +15,34 @@ class WholeSpinner extends React.Component {
     
     this.state = { 
       degrees: 1800, // parent starts degrees at 1800
+      modalStatus: false, // keep modal closed for now
     }
     this.startSpinner = null;
+  }
+
+  openModal = (status) => {
+    this.setState({
+      modalStatus: status
+    });
+  }
+
+  closeModal = (status) => {
+    this.setState({
+      modalStatus: status
+    });
+  }
+
+  setPropsToDare = () => {
+    this.setState(state => ({
+      truthOrDare: 'dare'
+    }));
+  }
+
+
+  setPropsToTruth = () => {
+    this.setState(state => ({
+      truthOrDare: 'truth'
+    }));
   }
 
   startWheelSpin = () => {
@@ -31,17 +57,30 @@ class WholeSpinner extends React.Component {
       transform: `rotate(${this.state.degrees}deg)` ,
       transition: `all 6s cubic-bezier(0, .99, .44, .99)`,
     };
-
-    // const spinnerAreasArray = ['test1','test2','test3','test4','test5','test6']; 
-
+    console.log(this.state.modalStatus,"this.state.modalStatus in whole spinner")
   	return (
       <Fragment>
         <div id="wrapper">
-        <SimpleModalWrapped />
+        <div className="cta-buttons">
+          <button onClick={this.setPropsToTruth} className="truth btn outline place-order">
+            <span className="fa fa-shopping-cart">Truth</span>
+          </button>
+          <button onClick={this.setPropsToDare} className="dare btn outline">
+            <span className="fa fa-shopping-cart">Dare</span>
+          </button>
+        </div>
+        <SimpleModalWrapped
+          handleOpen={this.openModal}
+          open={this.state.modalStatus}
+          truthOrDare={this.state.truthOrDare}
+        />
         <SidePanel />
         <div id="wheel">
           <div id="innerWheel" style={styles}>
-              <SectionArea />
+              <SectionArea
+                handleOpen={this.openModal}
+                truthOrDare={this.state.truthOrDare}
+              />
           </div>
           <SpinMe 
             startSpinner={this.startWheelSpin}

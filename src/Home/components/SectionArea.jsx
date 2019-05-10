@@ -22,7 +22,11 @@ class SectionArea extends React.Component {
   }
 
   openModal = () => {
-    console.log('meep')
+    this.props.handleOpen(true);
+  }
+
+  closeModal = () => {
+    this.props.handleOpen(false);
   }
 
   componentDidMount() {
@@ -33,11 +37,13 @@ class SectionArea extends React.Component {
     fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/6')
       .then(response => response.json())
       .then(results => this.setState({ questions: results}))
+      // here filter using the this.props.truthOrDare results
   }
 
   render() {
     const { classes } = this.props;
     const { questions } = this.state;
+
   	return (
       <div>
         {questions.map((t,index) => (
