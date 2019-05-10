@@ -27,6 +27,9 @@ const styles = theme => ({
   drawerPaper: {
     width: drawerWidth,
   },
+  listItem: {
+    paddingLeft: 31,
+  },
   players: {
     margin: 10,
   },
@@ -90,8 +93,8 @@ class PermanentDrawerRight extends React.Component {
             </div>
           <List>
             {this.state.players.map((item, i) => (
-              <ListItem button key={i}>
-                <Avatar alt="Some dude" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
+              <ListItem button key={i} className={classes.listItem}>
+                <Avatar alt={item.name.first} src={item.picture.medium} />
                 <ListItemText primary={item.name.first} className={classes.playerName}/>
               </ListItem>
             ))}
