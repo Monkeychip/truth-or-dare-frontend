@@ -11,7 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import Typography from '@material-ui/core/Typography';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
 const drawerWidth = `25%`;
 

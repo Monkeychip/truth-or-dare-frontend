@@ -15,7 +15,6 @@ class WholeSpinner extends React.Component {
     
     this.state = { 
       degrees: 1800, // parent starts degrees at 1800
-      spinningStatus: false, // parent starts state as false 
     }
     this.startSpinner = null;
   }
@@ -24,26 +23,16 @@ class WholeSpinner extends React.Component {
     let newDegree = Math.floor(Math.random() * 3300);
     this.setState({ // sending state to child component SpinMe
       degrees: newDegree,
-      spinningStatus: true,
     });
   }
-
-  componentDidUpdate(prevProps) { //ARG I don't think this is doing anything yet
  
-  }
-  
-  componentDidMount() {
-
-  }
-  
   render() {
-
     const styles = {
       transform: `rotate(${this.state.degrees}deg)` ,
       transition: `all 6s cubic-bezier(0, .99, .44, .99)`,
     };
 
-    const spinnerAreasArray = ['test1','test2','test3','test4','test5','test6']; 
+    // const spinnerAreasArray = ['test1','test2','test3','test4','test5','test6']; 
 
   	return (
       <Fragment>
@@ -52,7 +41,7 @@ class WholeSpinner extends React.Component {
         <SidePanel />
         <div id="wheel">
           <div id="innerWheel" style={styles}>
-              <SectionArea spinners={spinnerAreasArray} />
+              <SectionArea />
           </div>
           <SpinMe 
             startSpinner={this.startWheelSpin}
