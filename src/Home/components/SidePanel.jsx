@@ -11,6 +11,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import Typography from '@material-ui/core/Typography';
 
+import classNames from "classnames";
+
 const drawerWidth = `25%`;
 
 const styles = theme => ({
@@ -28,13 +30,18 @@ const styles = theme => ({
     width: drawerWidth,
   },
   listItem: {
-    paddingLeft: 31,
+    // paddingLeft: 31,
   },
   players: {
     margin: 10,
   },
   playerName: {
     textTransform: 'capitalize',
+  },
+  selected: {
+    backgroundColor: '#ff0077',
+    borderRadius: 50,
+    backgroundClip: `content-box`,
   },
   titleBar: {
     display: "flex",
@@ -50,11 +57,6 @@ class PermanentDrawerRight extends React.Component {
     players: [],
     currentPlayer: false,
   }
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {players: []};
-  // }
 
   componentDidMount() {
     this.UserList();
@@ -93,7 +95,12 @@ class PermanentDrawerRight extends React.Component {
             </div>
           <List>
             {this.state.players.map((item, i) => (
-              <ListItem button key={i} className={classes.listItem}>
+              <ListItem button key={i} className={
+                classNames(
+                  classes.listItem, 
+                  {[classes.selected]: item.gender === 'male'} // ARG: change based on person
+                )
+              }>
                 <Avatar alt={item.name.first} src={item.picture.medium} />
                 <ListItemText primary={item.name.first} className={classes.playerName}/>
               </ListItem>
