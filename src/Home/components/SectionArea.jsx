@@ -17,40 +17,20 @@ const styles = theme => ({
 
 class SectionArea extends React.Component {
 
-  state = {
-    questions: [],
-  }
-
   openModal = () => {
     this.props.handleOpen(true);
   }
 
-  closeModal = () => {
-    this.props.handleOpen(false);
-  }
-
-  componentDidMount() {
-    this.getQuestions();
-  }
-
-  getQuestions = () => {
-    fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/6')
-      .then(response => response.json())
-      .then(results => this.setState({ questions: results}))
-      // here filter using the this.props.truthOrDare results
-  }
-
   render() {
-    const { classes } = this.props;
-    const { questions } = this.state;
-
+    const { classes, questionList } = this.props;
+    console.log(questionList,"quetions")
   	return (
       <div>
-        {questions.map((t,index) => (
+        {questionList.map((t,index) => (
           <div id={`section${index}`} key={t} className="sec" onClick={this.openModal}>
             <span className={classes.sectionText}>
               <Typography variant="h5" gutterBottom >
-                {t.substring(1,5)}
+                {t.substring(0,3)}
               </Typography>
             </span>
           </div>

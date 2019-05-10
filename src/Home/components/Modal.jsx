@@ -32,6 +32,9 @@ const styles = theme => ({
     border: 0,
     color: 'white',
   },
+  title: {
+    paddingBottom: 19
+  }
 });
 
 class SimpleModal extends React.Component {
@@ -55,8 +58,7 @@ class SimpleModal extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-    console.log(this.state.open,'this.state.open in modal STATE')
+    const { classes, questionList } = this.props;
     return (
       <div>
         <Modal
@@ -66,11 +68,11 @@ class SimpleModal extends React.Component {
           onClose={this.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <Typography variant="h6" id="modal-title">
+            <Typography variant="h6" id="modal-title" className={classes.title}>
               Text in a modal
             </Typography>
             <Typography variant="subtitle1" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              {questionList[5]}
             </Typography>
             <div className="button-holder">
               <Button onClick={this.handleClose}>Pass</Button>

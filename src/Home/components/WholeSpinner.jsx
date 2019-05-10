@@ -16,6 +16,7 @@ class WholeSpinner extends React.Component {
     this.state = { 
       degrees: 1800, // parent starts degrees at 1800
       modalStatus: false, // keep modal closed for now
+      questionList: [],
     }
     this.startSpinner = null;
   }
@@ -51,13 +52,24 @@ class WholeSpinner extends React.Component {
       degrees: newDegree,
     });
   }
- 
+
+  getQuestions = () => {
+    fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/6')
+      .then(response => response.json())
+      .then(results => this.setState({ questionList: results}))
+      // here filter using the this.props.truthOrDare results
+  }
+
+  componentDidMount() {
+    this.getQuestions();
+  }
+
+
   render() {
     const styles = {
       transform: `rotate(${this.state.degrees}deg)` ,
       transition: `all 6s cubic-bezier(0, .99, .44, .99)`,
     };
-    console.log(this.state.modalStatus,"this.state.modalStatus in whole spinner")
   	return (
       <Fragment>
         <div id="wrapper">
@@ -73,6 +85,7 @@ class WholeSpinner extends React.Component {
           handleOpen={this.openModal}
           open={this.state.modalStatus}
           truthOrDare={this.state.truthOrDare}
+          questionList={this.state.questionList}
         />
         <SidePanel />
         <div id="wheel">
@@ -80,6 +93,7 @@ class WholeSpinner extends React.Component {
               <SectionArea
                 handleOpen={this.openModal}
                 truthOrDare={this.state.truthOrDare}
+                questionList={this.state.questionList}
               />
           </div>
           <SpinMe 
