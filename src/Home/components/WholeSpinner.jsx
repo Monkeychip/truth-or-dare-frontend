@@ -1,11 +1,10 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import './TruthOrDare.css';
 import SidePanel from './SidePanel';
 import SimpleModalWrapped from './Modal';
 import SectionArea from './SectionArea';
 import SpinMe from './SpinMe';
-import styled, { keyframes } from 'styled-components';
+// import styled, { keyframes } from 'styled-components';
 
 const { Fragment } = React;
 

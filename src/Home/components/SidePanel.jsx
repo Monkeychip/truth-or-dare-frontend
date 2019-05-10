@@ -30,6 +30,9 @@ const styles = theme => ({
   players: {
     margin: 10,
   },
+  playerName: {
+    textTransform: 'capitalize',
+  },
   titleBar: {
     display: "flex",
     margin: `21px 0px`,
@@ -40,25 +43,31 @@ const styles = theme => ({
 // function PermanentDrawerRight(props) {
 class PermanentDrawerRight extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {person: []};
-  }
   state = {
-    userList: [],
+    players: [],
+    currentPlayer: false,
   }
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {players: []};
+  // }
+
   componentDidMount() {
-    // this.UserList();
+    this.UserList();
   }
 
-  // UserList() => {
-  //   console.log('for now');
-  //   // $.getJSON('https://randomuser.me/api/')
-  //   //   .then(({ results }) => this.setState({ person: results }));
-  // }
+  UserList = () => {
+    fetch('https://randomuser.me/api/')
+      .then(function(response) {
+      return response.json();
+    })
+    .then(({ results }) => this.setState({ players: results }));
+  }
+
   render() {
     const { classes } = this.props;
-    let userList = ['meep','meeping 2']
+
     return (
       <div className={classes.root}>
         <Drawer
@@ -74,16 +83,16 @@ class PermanentDrawerRight extends React.Component {
               <Typography variant="h5" gutterBottom className={classes.players}>
                 Players
               </Typography>
-              <Button className={classes.button}>
+              <Button className={classes.button} onClick={this.UserList}>
                 Refresh List
               <RefreshIcon className={classes.rightIcon} />
               </Button>
             </div>
           <List>
-            {userList.map((text, index) => (
-              <ListItem button key={text}>
+            {this.state.players.map((item, i) => (
+              <ListItem button key={i}>
                 <Avatar alt="Some dude" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
-                <ListItemText primary={text} />
+                <ListItemText primary={item.name.first} className={classes.playerName}/>
               </ListItem>
             ))}
           </List>
