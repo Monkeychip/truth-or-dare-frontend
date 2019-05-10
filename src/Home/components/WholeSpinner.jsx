@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './TruthOrDare.css';
+import SidePanel from './SidePanel';
 import SimpleModalWrapped from './Modal';
 import SectionArea from './SectionArea';
 import SpinMe from './SpinMe';
@@ -49,6 +50,7 @@ class WholeSpinner extends React.Component {
       <Fragment>
         <div id="wrapper">
         <SimpleModalWrapped />
+        <SidePanel />
         <div id="wheel">
           <div id="innerWheel" style={styles}>
               <SectionArea spinners={spinnerAreasArray} />

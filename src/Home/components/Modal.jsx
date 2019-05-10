@@ -24,13 +24,13 @@ const styles = theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
     outline: 'none',
+    left: `36% !important`
   },
   root: {
     background: '#21b573',
     borderRadius: 3,
     border: 0,
     color: 'white',
-    boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .3)',
   },
 });
 
