@@ -9,9 +9,14 @@ const styles = theme => ({
   sectionText: {
     marginTop: -165,
     position: 'relative',
-    display: 'block',
     textAlign: 'center',
-    marginLeft: -25, // This is going to change based on word size :/
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  typography: {
+    fontSize: 21,
+    lineHeight: '21px',
+    marginTop: -15,
   }
 });
 
@@ -23,14 +28,13 @@ class SectionArea extends React.Component {
 
   render() {
     const { classes, questionList } = this.props;
-    console.log(questionList,"quetions")
   	return (
       <div>
         {questionList.map((t,index) => (
           <div id={`section${index}`} key={t} className="sec" onClick={this.openModal}>
             <span className={classes.sectionText}>
-              <Typography variant="h5" gutterBottom >
-                {t.substring(0,3)}
+              <Typography variant="h5" gutterBottom className={classes.typography}>
+                {t.substring(0,Math.floor(Math.random() * 20))}
               </Typography>
             </span>
           </div>
