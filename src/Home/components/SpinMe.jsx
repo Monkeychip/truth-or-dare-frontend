@@ -27,18 +27,17 @@ class SpinMe extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-  
-  }
-  
-  componentWillUnmount() {
-	  clearTimeout(this.doneTimeout);
+    if (this.props.degrees !== prevProps.degrees) {
+         this.degreesChanged = this.props.degrees - prevProps.degrees;
+    };
   }
   
   componentDidMount() {
-    
+
   }
   
   render() {
+    let iterationCount = (Math.abs(this.degreesChanged)/360)*2.4
     const spinTheSpinner = keyframes`
       0%, 100%{
         transform: rotate(0deg);
@@ -48,12 +47,11 @@ class SpinMe extends React.Component {
         transform: rotate(7deg);
       }
     `;
-    const spinCount = this.props.degrees/ 260 // ARG: revisit
-
+    
     const Spinner = styled.div`
-      animation: ${spinTheSpinner};
-      animation-duration: .2s;
-      animation-iteration-count: ${spinCount};
+      /* animation: ${spinTheSpinner};
+      animation-duration: .25s;
+      animation-iteration-count: ${iterationCount}; */
     `;
 
   	return (

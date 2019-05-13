@@ -4,7 +4,6 @@ import SidePanel from './SidePanel';
 import SimpleModalWrapped from './Modal';
 import SectionArea from './SectionArea';
 import SpinMe from './SpinMe';
-// import styled, { keyframes } from 'styled-components';
 
 const { Fragment } = React;
 
@@ -64,10 +63,9 @@ class WholeSpinner extends React.Component {
     this.getQuestions();
   }
 
-
   render() {
     const styles = {
-      transform: `rotate(${this.state.degrees}deg)` ,
+      transform: `rotate(${this.state.degrees}deg)` , 
       transition: `all 6s cubic-bezier(0, .99, .44, .99)`,
     };
   	return (
