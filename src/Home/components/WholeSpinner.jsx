@@ -70,9 +70,13 @@ class WholeSpinner extends React.Component {
     };
   	return (
       <Fragment>
+        <button onClick={this.startNewRound} className="btn newRound outline">
+          <span className="fa fa-shopping-cart">start new round</span>
+        </button>
         <div id="wrapper">
+        
         <div className="cta-buttons">
-          <button onClick={this.setPropsToTruth} className="truth btn outline place-order">
+          <button onClick={this.setPropsToTruth} className="truth btn outline">
             <span className="fa fa-shopping-cart">Truth</span>
           </button>
           <button onClick={this.setPropsToDare} className="dare btn outline">

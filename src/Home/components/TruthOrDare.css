@@ -183,6 +183,7 @@ body {
 	text-transform: uppercase;
 	vertical-align: middle;
 	white-space: nowrap;
+	font-weight: 600;
 }
 
 .truth {
@@ -200,7 +201,22 @@ body {
 	color: #fff;
 }
 
+.newRound {
+	float: right;
+	margin-right: 319px;
+	margin-top: -175px;
+	padding: 8px 12px;
+	border-radius: 50px;
+	background-color: #f7f7f8;
+	color: #1c2f3a;
+	font-size: 11px;
+	text-transform: lowercase;
+}
+
 .truth:hover {
+	background-color: rgba(255,255,255, 0.9);
+}
+.newRound:hover {
 	background-color: rgba(255,255,255, 0.9);
 }
 .dare:hover {
