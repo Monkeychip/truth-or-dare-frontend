@@ -28,13 +28,16 @@ class SectionArea extends React.Component {
 
   render() {
     const { classes, questionList } = this.props;
+
+    const firstSix = questionList.slice(0,6); // will need to update based on key
+
   	return (
       <div>
-        {questionList.map((t,index) => (
-          <div id={`section${index}`} key={t} className="sec" onClick={this.openModal}>
+        {firstSix.map((question,index) => (
+          <div id={`section${index}`} key={question.key} className="sec" onClick={this.openModal}>
             <span className={classes.sectionText}>
               <Typography variant="h5" gutterBottom className={classes.typography}>
-                {t.substring(0,Math.floor(Math.random() * 20))}
+                {question.shorttitle}
               </Typography>
             </span>
           </div>

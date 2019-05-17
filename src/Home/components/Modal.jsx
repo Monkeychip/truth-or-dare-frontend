@@ -51,6 +51,12 @@ class SimpleModal extends React.Component {
     this.setState({ open: false });
   };
 
+  markQuestionDone = () => {
+    const { questionAnswered, question, handleOpen } = this.props;
+    questionAnswered(question.key); // pass to parent
+    handleOpen(false);
+  }
+
   componentWillReceiveProps(nextProps){
     if(nextProps.open !== this.props.open){
         this.setState({ open : nextProps.open });
@@ -58,7 +64,7 @@ class SimpleModal extends React.Component {
   }
 
   render() {
-    const { classes, questionList } = this.props;
+    const { classes, question } = this.props;
     return (
       <div>
         <Modal
@@ -72,11 +78,11 @@ class SimpleModal extends React.Component {
               Text in a modal
             </Typography>
             <Typography variant="subtitle1" id="simple-modal-description">
-              {questionList[5]}
+              {question.longtitle}
             </Typography>
             <div className="button-holder">
               <Button onClick={this.handleClose}>Pass</Button>
-              <Button onClick={this.handleClose} variant="contained" className="modal-button-right"
+              <Button onClick={this.markQuestionDone} variant="contained" className="modal-button-right"
                 classes={{
                   root: classes.root, // class name, e.g. `classes-nesting-root-x`
                   label: classes.label, // class name, e.g. `classes-nesting-label-x`
