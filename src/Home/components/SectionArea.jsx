@@ -22,19 +22,17 @@ const styles = theme => ({
 
 class SectionArea extends React.Component {
 
-  openModal = () => {
-    this.props.handleOpen(true);
+  openModal = (key) => {
+    this.props.handleOpen(true, key);
   }
 
   render() {
-    const { classes, questionList } = this.props;
-
-    const firstSix = questionList.slice(0,6); // will need to update based on key
+    const { classes, firstSix, questionList} = this.props;
 
   	return (
       <div>
         {firstSix.map((question,index) => (
-          <div id={`section${index}`} key={question.key} className="sec" onClick={this.openModal}>
+          <div id={`section${index}`} key={question.key} className="sec" onClick={() => this.openModal(question.key)}>
             <span className={classes.sectionText}>
               <Typography variant="h5" gutterBottom className={classes.typography}>
                 {question.shorttitle}

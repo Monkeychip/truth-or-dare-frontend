@@ -1,5 +1,9 @@
 import * as React from 'react';
 import update from 'immutability-helper';
+
+import dareQuestions from './data/dare';
+import openingQuestions from './data/opening';
+import truthQuestions from './data/truth';
 import './TruthOrDare.css';
 import SidePanel from './SidePanel';
 import SimpleModalWrapped from './Modal';
@@ -8,57 +12,6 @@ import SpinMe from './SpinMe';
 
 const { Fragment } = React;
 
-const testObject = [
-  { key: 0,
-    shorttitle : 'Mall walking',
-    longtitle : 'What was the funniest thing that happened to you at a mall?',
-    type: 'truth',
-    asked: false
-  },
-  { key: 1,
-    shorttitle: 'Gratitude',
-    longtitle: 'What is the best thing about your life right now?', 
-    type: 'truth', asked: false },
-  { key: 2,
-    shorttitle: 'You oughta know',
-    longtitle: 'What is one talent most people here don’t know that you have?',
-    type: 'truth', asked: false 
-  },
-  { key: 3,
-    shorttitle: 'Secrets',
-    longtitle: 'What is a secret that you kept from your parents when you were growing up?',
-    type: 'truth', asked: false
-  },
-  { key: 4,
-    shorttitle: 'Nail biter',
-    longtitle: 'What is a bad habit that you have?',
-    type: 'truth', asked: false 
-  },
-  { key: 5,
-    shorttitle: 'Don’t eat this',
-    longtitle: 'What was the worst thing you ever cooked or baked?',
-    type: 'truth', asked: false
-  },
-  { key: 6,
-    shorttitle: 'There’s no time', 
-    longtitle: 'If your house was burning what three things would you grab?',
-    type: 'truth', asked: false
-  },
-  { key: 7,
-    shorttitle: 'So mean',
-    longtitle: 'What’s the meanest thing you’ve ever said to someone?',
-    type: 'truth', asked: false
-  },
-  { key: 8,
-    shorttitle: 'switcheroo',
-    longtitle: 'Of the people in this room, who do you most want to switch lives with and why?',
-    type: 'truth', asked: false
-  },
-  { key: 9,
-    shorttitle: 'The opposite sex',
-    longtitle: 'If you were the opposite sex for one hour, what would you do?',
-    type: 'truth', asked: false }
-];
 
 class WholeSpinner extends React.Component {
 
@@ -66,19 +19,25 @@ class WholeSpinner extends React.Component {
   	super(props);
     
     this.state = { 
+      truthOrDare: 'opening',
       degrees: 0, // parent starts degrees at 1800
       firstSix: [],
       modalStatus: false, // keep modal closed for now
-      questionList: testObject,
+      openingQuestionList: openingQuestions.questions,
+      dareQuestionList: dareQuestions.questions,
+      truthQuestionList: truthQuestions.questions,
       index: 5,
-      question: '',
+      question: {key: 5, longtitle: "gotta choose a question type first", shorttitle: "😇"},
     }
     this.startSpinner = null;
   }
 
-  openModal = (status) => {
+  openModal = (status, key) => {
+    const { firstSix } = this.state;
     this.setState({
-      modalStatus: status
+      index: key,
+      modalStatus: status,
+      question: firstSix[key],
     });
   }
 
@@ -88,46 +47,47 @@ class WholeSpinner extends React.Component {
     });
   }
 
-  markQuestionAsAnswered = (key) => {
-//update(state, { items: { $splice: [[index, 1]] } });
-    const { questionList, index } = this.state;
-    // const updatedQuestionList = update(questionList, {
-      // [index]: {
-      //   asked: {$set: true}
-      // }
-    // })
-    const updatedQuestionList = update(questionList, {$splice: [[index, 1]]});
-    console.log(updatedQuestionList)
-    this.setState({
-      questionList: updatedQuestionList
-    });
-  }
+  markQuestionAsAnswered = () => {
+    const { truthOrDare, dareQuestionList, truthQuestionList, index } = this.state;
+    if(truthOrDare === 'dare'){
+      this.setState({
+        dareQuestionList: update(dareQuestionList, {$splice: [[index, 1]]}),
+      });
+      this.setPropsToDare();
+    }else{
+      this.setState({
+        truthQuestionList: update(truthQuestionList, {$splice: [[index, 1]]}),
+      });
+      this.setPropsToTruth();
+    }
+  } 
 
   setPropsToDare = () => {
+    const { dareQuestionList, index } = this.state;
+    const shuffledList = dareQuestionList.sort( () => Math.random() - 0.5);
+    const six = shuffledList.slice(0,6);
+    const question = six[index];
+
     this.setState(state => ({
+      dareQuestionList: shuffledList,
+      firstSix: six,
+      question,
       truthOrDare: 'dare'
     }));
   }
 
   setPropsToTruth = () => {
+    const { truthQuestionList, index } = this.state;
+    const shuffledList = truthQuestionList.sort( () => Math.random() - 0.5);
+    const six = shuffledList.slice(0,6);
+    const question = six[index];
+
     this.setState(state => ({
-      truthOrDare: 'truth'
-    }));
-  }
-
-  shuffleStuff = () => {
-    const { questionList, index } = this.state;
-    let shuffledList = questionList.sort( () => Math.random() - 0.5);
-    let firstSix = shuffledList.slice(0,6);
-    console.log(firstSix,'firstSix')
-    let question = firstSix[index];
-    this.setState({ question: question });
-
-    this.setState({ 
-      firstSix,
-      questionList: shuffledList,
+      firstSix: six,
       question: question,
-    })
+      truthOrDare: 'truth',
+      truthQuestionList: shuffledList,
+    }));
   }
 
   startNewRound = () => {
@@ -141,16 +101,13 @@ class WholeSpinner extends React.Component {
     });
   }
 
-  // getQuestions = () => {
-  //   fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes/6')
-  //     .then(response => response.json())
-  //     .then(results => this.setState({ questionList: results}))
-  //     // here filter using the this.props.truthOrDare results
-  // }
-
   componentDidMount() {
-    // this.getQuestions();
-    this.shuffleStuff();
+    const { truthOrDare, openingQuestionList} = this.state;
+    if(truthOrDare === 'opening') {
+      this.setState({
+        firstSix: openingQuestionList
+      })
+    } 
   }
 
   render() {
@@ -165,13 +122,8 @@ class WholeSpinner extends React.Component {
       modalStatus,
       truthOrDare,
       question,
-      questionList,
     } = this.state;
-    
-    questionList.forEach((item, index) => {
-      console.log(index);
-      console.log(item.key, 'key');
-    });
+    let questionList;
 
   	return (
       <Fragment>

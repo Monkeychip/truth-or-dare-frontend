@@ -52,8 +52,8 @@ class SimpleModal extends React.Component {
   };
 
   markQuestionDone = () => {
-    const { questionAnswered, question, handleOpen } = this.props;
-    questionAnswered(question.key); // pass to parent
+    const { questionAnswered, handleOpen } = this.props;
+    questionAnswered(); // pass to parent
     handleOpen(false);
   }
 
@@ -64,7 +64,8 @@ class SimpleModal extends React.Component {
   }
 
   render() {
-    const { classes, question } = this.props;
+    const { classes, truthOrDare, question } = this.props;
+    let buttonText = truthOrDare === 'dare' ? 'Dare Done' : 'Truth was Told'
     return (
       <div>
         <Modal
@@ -75,7 +76,7 @@ class SimpleModal extends React.Component {
         >
           <div style={getModalStyle()} className={classes.paper}>
             <Typography variant="h6" id="modal-title" className={classes.title}>
-              Text in a modal
+              {question.shorttitle}
             </Typography>
             <Typography variant="subtitle1" id="simple-modal-description">
               {question.longtitle}
@@ -86,7 +87,7 @@ class SimpleModal extends React.Component {
                 classes={{
                   root: classes.root, // class name, e.g. `classes-nesting-root-x`
                   label: classes.label, // class name, e.g. `classes-nesting-label-x`
-                }}>Truth Done!</Button>
+                }}>{buttonText}</Button>
             </div>
           </div>
         </Modal>
