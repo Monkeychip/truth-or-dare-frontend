@@ -54,9 +54,7 @@ class WholeSpinner extends React.Component {
       }, () => {
         this.setPropsToDare();
       });
-
-      
-    }else{
+    } else {
       let index = truthQuestionList.findIndex(x => x.key === key);
       this.setState({
         truthQuestionList: update(truthQuestionList, {$splice: [[index, 1]]}),
@@ -87,10 +85,6 @@ class WholeSpinner extends React.Component {
       truthOrDare: 'truth',
       truthQuestionList: shuffledList,
     }));
-  }
-
-  startNewRound = () => {
-    // Do something here. 
   }
 
   startWheelSpin = () => {
@@ -126,9 +120,9 @@ class WholeSpinner extends React.Component {
 
   	return (
       <Fragment>
-        <button onClick={this.startNewRound} className="btn newRound outline">
+        {/* <button onClick={this.startNewRound} className="btn newRound outline">
           <span className="fa fa-shopping-cart">start new round</span>
-        </button>
+        </button> */}
         <div id="wrapper">
         
         <div className="cta-buttons">

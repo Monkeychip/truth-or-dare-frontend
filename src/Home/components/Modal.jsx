@@ -67,7 +67,14 @@ class SimpleModal extends React.Component {
   render() {
     const { classes, truthOrDare, firstSixPassingDown, passingDownKey } = this.props;
     const { defaultQuestion } = this.state;
-    let buttonText = truthOrDare === 'dare' ? 'Dare Done' : 'Truth was Told';
+    let buttonText;
+    if(truthOrDare === 'dare') {
+      buttonText = 'Dare Done'
+    }else if(truthOrDare === 'truth'){
+      buttonText = 'Truth was Told'
+    }else{
+      buttonText = 'get out of here'
+    }
     let question = firstSixPassingDown.find(question => question.key === passingDownKey) ? firstSixPassingDown.find(question => question.key === passingDownKey) : defaultQuestion
     return (
       <div>
