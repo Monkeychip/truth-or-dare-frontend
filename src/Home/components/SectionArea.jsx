@@ -27,11 +27,10 @@ class SectionArea extends React.Component {
   }
 
   render() {
-    const { classes, firstSix, questionList} = this.props;
-
+    const { classes, firstSixPassingDown} = this.props;
   	return (
       <div>
-        {firstSix.map((question,index) => (
+        {firstSixPassingDown.map((question,index) => (
           <div id={`section${index}`} key={question.key} className="sec" onClick={() => this.openModal(question.key)}>
             <span className={classes.sectionText}>
               <Typography variant="h5" gutterBottom className={classes.typography}>

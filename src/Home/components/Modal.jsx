@@ -39,6 +39,7 @@ const styles = theme => ({
 
 class SimpleModal extends React.Component {
   state = {
+    defaultQuestion: {key: 5, longtitle: "gotta choose a question type first", shorttitle: "😇"},
     open: false,
   };
 
@@ -64,8 +65,10 @@ class SimpleModal extends React.Component {
   }
 
   render() {
-    const { classes, truthOrDare, question } = this.props;
-    let buttonText = truthOrDare === 'dare' ? 'Dare Done' : 'Truth was Told'
+    const { classes, truthOrDare, firstSixPassingDown, passingDownKey } = this.props;
+    const { defaultQuestion } = this.state;
+    let buttonText = truthOrDare === 'dare' ? 'Dare Done' : 'Truth was Told';
+    let question = firstSixPassingDown.find(question => question.key === passingDownKey) ? firstSixPassingDown.find(question => question.key === passingDownKey) : defaultQuestion
     return (
       <div>
         <Modal

@@ -27,17 +27,15 @@ class WholeSpinner extends React.Component {
       dareQuestionList: dareQuestions.questions,
       truthQuestionList: truthQuestions.questions,
       index: 5,
-      question: {key: 5, longtitle: "gotta choose a question type first", shorttitle: "😇"},
+      key: 5,
     }
     this.startSpinner = null;
   }
 
   openModal = (status, key) => {
-    const { firstSix } = this.state;
     this.setState({
-      index: key,
+      key,
       modalStatus: status,
-      question: firstSix[key],
     });
   }
 
@@ -48,43 +46,44 @@ class WholeSpinner extends React.Component {
   }
 
   markQuestionAsAnswered = () => {
-    const { truthOrDare, dareQuestionList, truthQuestionList, index } = this.state;
+    const { truthOrDare, dareQuestionList, truthQuestionList, key } = this.state;
     if(truthOrDare === 'dare'){
+      let index = dareQuestionList.findIndex(x => x.key === key);
       this.setState({
         dareQuestionList: update(dareQuestionList, {$splice: [[index, 1]]}),
+      }, () => {
+        this.setPropsToDare();
       });
-      this.setPropsToDare();
+
+      
     }else{
+      let index = truthQuestionList.findIndex(x => x.key === key);
       this.setState({
         truthQuestionList: update(truthQuestionList, {$splice: [[index, 1]]}),
+      }, () => {
+        this.setPropsToTruth();
       });
-      this.setPropsToTruth();
     }
   } 
 
   setPropsToDare = () => {
-    const { dareQuestionList, index } = this.state;
+    const { dareQuestionList } = this.state;
     const shuffledList = dareQuestionList.sort( () => Math.random() - 0.5);
     const six = shuffledList.slice(0,6);
-    const question = six[index];
-
     this.setState(state => ({
       dareQuestionList: shuffledList,
       firstSix: six,
-      question,
       truthOrDare: 'dare'
     }));
   }
 
   setPropsToTruth = () => {
-    const { truthQuestionList, index } = this.state;
+    const { truthQuestionList } = this.state;
     const shuffledList = truthQuestionList.sort( () => Math.random() - 0.5);
     const six = shuffledList.slice(0,6);
-    const question = six[index];
 
     this.setState(state => ({
       firstSix: six,
-      question: question,
       truthOrDare: 'truth',
       truthQuestionList: shuffledList,
     }));
@@ -107,7 +106,7 @@ class WholeSpinner extends React.Component {
       this.setState({
         firstSix: openingQuestionList
       })
-    } 
+    }
   }
 
   render() {
@@ -118,10 +117,10 @@ class WholeSpinner extends React.Component {
 
     const {
       degrees,
+      key,
       firstSix,
       modalStatus,
       truthOrDare,
-      question,
     } = this.state;
     let questionList;
 
@@ -144,14 +143,15 @@ class WholeSpinner extends React.Component {
           handleOpen={this.openModal}
           open={modalStatus}
           truthOrDare={truthOrDare}
-          question={question}
+          firstSixPassingDown={firstSix}
+          passingDownKey={key}
           questionAnswered={this.markQuestionAsAnswered}
         />
         <SidePanel />
         <div id="wheel">
           <div id="innerWheel" style={styles}>
               <SectionArea
-                firstSix={firstSix}
+                firstSixPassingDown={firstSix}
                 handleOpen={this.openModal}
                 truthOrDare={truthOrDare}
                 questionList={questionList}
