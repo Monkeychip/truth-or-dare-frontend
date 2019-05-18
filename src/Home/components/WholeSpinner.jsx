@@ -1,4 +1,5 @@
 import * as React from 'react';
+import update from 'immutability-helper';
 import './TruthOrDare.css';
 import SidePanel from './SidePanel';
 import SimpleModalWrapped from './Modal';
@@ -69,7 +70,7 @@ class WholeSpinner extends React.Component {
       firstSix: [],
       modalStatus: false, // keep modal closed for now
       questionList: testObject,
-      questionKey: 5,
+      index: 5,
       question: '',
     }
     this.startSpinner = null;
@@ -88,8 +89,18 @@ class WholeSpinner extends React.Component {
   }
 
   markQuestionAsAnswered = (key) => {
+//update(state, { items: { $splice: [[index, 1]] } });
+    const { questionList, index } = this.state;
+    // const updatedQuestionList = update(questionList, {
+      // [index]: {
+      //   asked: {$set: true}
+      // }
+    // })
+    const updatedQuestionList = update(questionList, {$splice: [[index, 1]]});
+    console.log(updatedQuestionList)
     this.setState({
-      ...this.state.questionList[5], asked: true});
+      questionList: updatedQuestionList
+    });
   }
 
   setPropsToDare = () => {
@@ -105,10 +116,11 @@ class WholeSpinner extends React.Component {
   }
 
   shuffleStuff = () => {
-    let shuffledList = this.state.questionList.sort( () => Math.random() - 0.5);
+    const { questionList, index } = this.state;
+    let shuffledList = questionList.sort( () => Math.random() - 0.5);
     let firstSix = shuffledList.slice(0,6);
     console.log(firstSix,'firstSix')
-    let question = firstSix[5];
+    let question = firstSix[index];
     this.setState({ question: question });
 
     this.setState({ 
@@ -155,6 +167,11 @@ class WholeSpinner extends React.Component {
       question,
       questionList,
     } = this.state;
+    
+    questionList.forEach((item, index) => {
+      console.log(index);
+      console.log(item.key, 'key');
+    });
 
   	return (
       <Fragment>
