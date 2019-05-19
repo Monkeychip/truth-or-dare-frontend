@@ -65,8 +65,8 @@ class PermanentDrawerRight extends React.Component {
 
   UserList = () => {
     // const url = 'https://www.formstack.com/api/v2/form/3460051/submission.json';
-    const fullUrl = 'https://www.formstack.com/api/v2/form/3460051/submission.json?page=1&per_page=25&data=true&oauth_token=07c3121dbaf994a338239de8ecc42fca';
-    // const bearer = 'oauth_token=' + '07c3121dbaf994a338239de8ecc42fca';
+    const fullUrl = 'https://www.formstack.com/api/v2/form/3460051/submission.json?page=1&per_page=25&data=true&oauth_token=';
+    // const bearer = 'oauth_token=' + '';
     fetch(fullUrl, {
       method: 'GET',
       headers: {
