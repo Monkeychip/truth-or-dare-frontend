@@ -64,16 +64,14 @@ class PermanentDrawerRight extends React.Component {
   }
 
   UserList = () => {
-    // const url = 'https://www.formstack.com/api/v2/form/3460051/submission.json';
-    const fullUrl = 'https://www.formstack.com/api/v2/form/3460051/submission.json?page=1&per_page=25&data=true&oauth_token=';
-    // const bearer = 'oauth_token=' + '';
-    fetch(fullUrl, {
+    const url = 'https://www.formstack.com/api/v2/form/3460051/submission.json?';
+    fetch(url, {
       method: 'GET',
       headers: {
-        // 'Authorization': bearer,
-        // 'data': true,
-        'Content-Type' : 'application/json'
-      }
+        Accept: 'application/json',
+        Authorization: 'Bearer ',
+        'Content-Type': 'application/json'
+      },
     }).then(function(response) {
       console.log(response,'response')
     })
@@ -82,6 +80,12 @@ class PermanentDrawerRight extends React.Component {
       // return response.json();
     // })
     // .then(({ results }) => this.setState({ players: results }));
+
+    /**
+     * curl -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer " https://www.formstack.com/api/v2/form/3460051/submission.json?
+data=true\&page=1\&per_page=100\
+
+     */
   }
 
   render() {
