@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+// import Iframe from 'react-iframe';
 
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -63,16 +64,29 @@ class PermanentDrawerRight extends React.Component {
   }
 
   UserList = () => {
-    fetch('https://randomuser.me/api/')
-      .then(function(response) {
-      return response.json();
+    // const url = 'https://www.formstack.com/api/v2/form/3460051/submission.json';
+    const fullUrl = 'https://www.formstack.com/api/v2/form/3460051/submission.json?page=1&per_page=25&data=true&oauth_token=07c3121dbaf994a338239de8ecc42fca';
+    // const bearer = 'oauth_token=' + '07c3121dbaf994a338239de8ecc42fca';
+    fetch(fullUrl, {
+      method: 'GET',
+      headers: {
+        // 'Authorization': bearer,
+        // 'data': true,
+        'Content-Type' : 'application/json'
+      }
+    }).then(function(response) {
+      console.log(response,'response')
     })
-    .then(({ results }) => this.setState({ players: results }));
+    // fetch('https://randomuser.me/api/')
+      // .then(function(response) {
+      // return response.json();
+    // })
+    // .then(({ results }) => this.setState({ players: results }));
   }
 
   render() {
     const { classes } = this.props;
-
+    console.log(this.state.players,'players')
     return (
       <div className={classes.root}>
         <Drawer
@@ -93,16 +107,20 @@ class PermanentDrawerRight extends React.Component {
               <RefreshIcon className={classes.rightIcon} />
               </Button>
             </div>
+
+          {/* <Iframe url="https://argarbarino.formstack.com/forms/truthordare"
+          // could put it in other page?
+            /> */}
           <List>
             {this.state.players.map((item, i) => (
               <ListItem button key={i} className={
                 classNames(
                   classes.listItem, 
-                  {[classes.selected]: item.gender === 'male'} // ARG: change based on person
+                  // {[classes.selected]: item.gender === 'male'} // ARG: change based on person
                 )
               }>
-                <Avatar alt={item.name.first} src={item.picture.medium} />
-                <ListItemText primary={item.name.first} className={classes.playerName}/>
+                {/* <Avatar alt={item.name.first} src={item.picture.medium} /> */}
+                <ListItemText primary={item.data.value} className={classes.playerName}/>
               </ListItem>
             ))}
           </List>
