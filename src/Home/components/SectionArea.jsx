@@ -19,8 +19,17 @@ const styles = theme => ({
     marginTop: -15,
   }
 });
-
+// SUB COMPONENT
 class SectionArea extends React.Component {
+
+  constructor(props) {
+  	super(props);
+    
+    this.state = { 
+      key: 5,
+    }
+    this.startSpinner = null;
+  }
 
   openModal = (key) => {
     this.props.handleOpen(true, key);
@@ -31,9 +40,9 @@ class SectionArea extends React.Component {
   	return (
       <div>
         {firstSixPassingDown.map((question,index) => (
-          <div id={`section${index}`} key={question.key} className="sec" onClick={() => this.openModal(question.key)}>
+          <div id={`section${index}`} key={question.key} className="sec" >
             <span className={classes.sectionText}>
-              <Typography variant="h5" gutterBottom className={classes.typography}>
+              <Typography variant="h5" gutterBottom className={classes.typography} onClick={() => this.openModal(question.key)}>
                 {question.shorttitle}
               </Typography>
             </span>

@@ -154,6 +154,7 @@ class WholeSpinner extends React.Component {
           <SpinMe 
             startSpinner={this.startWheelSpin}
             degrees={degrees}
+            firstSixPassingDown={firstSix}
           />
         </div>
       </div>

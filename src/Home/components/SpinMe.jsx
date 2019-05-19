@@ -53,7 +53,6 @@ class SpinMe extends React.Component {
       animation-duration: .25s;
       animation-iteration-count: ${iterationCount}; */
     `;
-
   	return (
       <Spinner id="spin" onClick={this.onSpinnerClick}>
           <div id="innerSpin">
