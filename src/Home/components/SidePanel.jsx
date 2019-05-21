@@ -31,9 +31,9 @@ const styles = theme => ({
     width: drawerWidth,
   },
   listItem: {
-    // paddingLeft: 31,
+    padding: 5,
   },
-  players: {
+  playerList: {
     margin: 10,
   },
   playerName: {
@@ -42,7 +42,6 @@ const styles = theme => ({
   selected: {
     backgroundColor: '#ff0077',
     borderRadius: 50,
-    backgroundClip: `content-box`,
   },
   titleBar: {
     display: "flex",
@@ -69,7 +68,10 @@ class PermanentDrawerRight extends React.Component {
       return response.json();
     })
     .then(myJson => {
-      this.setState({players: myJson});
+      return myJson.sort( () => Math.random() - 0.5);
+    })
+    .then(shuffled => {
+      this.setState({players: shuffled});
     })
   }
 
@@ -77,10 +79,6 @@ class PermanentDrawerRight extends React.Component {
 
   render() {
     const { classes } = this.props;
-    if(this.state.players){
-      console.log(this.state.players.map(player => player.name))
-    }
-    
     return (
       <div className={classes.root}>
         <Drawer
@@ -101,7 +99,7 @@ class PermanentDrawerRight extends React.Component {
               <RefreshIcon className={classes.rightIcon} />
               </Button>
             </div>
-          <List>
+          <List className={classes.playerList}>
              { this.state.players &&
                 this.state.players.map((player, i) => (
                   <ListItem button key={i} className={

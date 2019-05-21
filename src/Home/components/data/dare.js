@@ -1,6 +1,6 @@
 const dareQuestions = {
   questions: [
-    ,{ shorttitle : 'Once upon a time',
+    { shorttitle : 'Once upon a time',
     key : 1,
     longtitle : 'Make up an exciting story about the person to your right.' }
     ,{ shorttitle : 'Hello moooooom',
