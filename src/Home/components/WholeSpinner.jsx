@@ -28,6 +28,7 @@ class WholeSpinner extends React.Component {
       truthQuestionList: truthQuestions.questions,
       index: 5,
       key: 5,
+      players: [],
     }
     this.startSpinner = null;
   }
@@ -46,7 +47,12 @@ class WholeSpinner extends React.Component {
   }
 
   markQuestionAsAnswered = () => {
-    const { truthOrDare, dareQuestionList, truthQuestionList, key } = this.state;
+    const { truthOrDare, dareQuestionList, truthQuestionList, key, players } = this.state;
+    
+    this.setState({
+      players: update(players, {$splice: [[0,1]]})
+    })
+
     if(truthOrDare === 'dare'){
       let index = dareQuestionList.findIndex(x => x.key === key);
       this.setState({
@@ -94,13 +100,30 @@ class WholeSpinner extends React.Component {
     });
   }
 
+  UserList = () => {
+    fetch('http://localhost:5000/play')
+    .then(response => {
+      return response.json();
+    })
+    .then(myJson => {
+      return myJson.sort( () => Math.random() - 0.5);
+      // return myJson
+    })
+    .then(shuffled => {
+      this.setState({players: shuffled});
+      console.log('done')
+    })
+  }
+
   componentDidMount() {
+    this.UserList();
     const { truthOrDare, openingQuestionList} = this.state;
     if(truthOrDare === 'opening') {
       this.setState({
         firstSix: openingQuestionList
       })
     }
+    
   }
 
   render() {
@@ -114,15 +137,12 @@ class WholeSpinner extends React.Component {
       key,
       firstSix,
       modalStatus,
+      players,
       truthOrDare,
     } = this.state;
     let questionList;
-
   	return (
       <Fragment>
-        {/* <button onClick={this.startNewRound} className="btn newRound outline">
-          <span className="fa fa-shopping-cart">start new round</span>
-        </button> */}
         <div id="wrapper">
         
         <div className="cta-buttons">
@@ -141,7 +161,9 @@ class WholeSpinner extends React.Component {
           passingDownKey={key}
           questionAnswered={this.markQuestionAsAnswered}
         />
-        <SidePanel />
+        {players.length > 0 &&
+          <SidePanel players={players}/>
+        }
         <div id="wheel">
           <div id="innerWheel" style={styles}>
               <SectionArea
@@ -149,6 +171,7 @@ class WholeSpinner extends React.Component {
                 handleOpen={this.openModal}
                 truthOrDare={truthOrDare}
                 questionList={questionList}
+                players={players}
               />
           </div>
           <SpinMe 

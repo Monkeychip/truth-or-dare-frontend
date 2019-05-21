@@ -59,26 +59,27 @@ class PermanentDrawerRight extends React.Component {
   }
 
   componentDidMount() {
-    this.UserList();
+    // this.UserList();
   }
 
-  UserList = () => {
-    fetch('http://localhost:5000/play')
-    .then(response => {
-      return response.json();
-    })
-    .then(myJson => {
-      return myJson.sort( () => Math.random() - 0.5);
-    })
-    .then(shuffled => {
-      this.setState({players: shuffled});
-    })
-  }
+  // UserList = () => {
+  //   fetch('http://localhost:5000/play')
+  //   .then(response => {
+  //     return response.json();
+  //   })
+  //   .then(myJson => {
+  //     return myJson.sort( () => Math.random() - 0.5);
+  //   })
+  //   .then(shuffled => {
+  //     this.setState({players: shuffled});
+  //   })
+  // }
 
   
 
   render() {
-    const { classes } = this.props;
+    const { classes, players } = this.props;
+    console.log(this.props.players)
     return (
       <div className={classes.root}>
         <Drawer
@@ -100,8 +101,8 @@ class PermanentDrawerRight extends React.Component {
               </Button>
             </div>
           <List className={classes.playerList}>
-             { this.state.players &&
-                this.state.players.map((player, i) => (
+             { this.props.players &&
+                this.props.players.map((player, i) => (
                   <ListItem button key={i} className={
                     classNames(
                     classes.listItem, 
