@@ -64,28 +64,17 @@ class PermanentDrawerRight extends React.Component {
   }
 
   UserList = () => {
-    const url = 'https://www.formstack.com/api/v2/form/3460051/submission.json?';
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        Authorization: 'Bearer ',
-        'Content-Type': 'application/json'
-      },
-    }).then(function(response) {
-      console.log(response,'response')
-    })
-    // fetch('https://randomuser.me/api/')
-      // .then(function(response) {
-      // return response.json();
+    // const url = 'https://www.formstack.com/api/v2/form/3460051/submission.json';
+    // fetch(url, {
+    //   method: 'GET',
+    //   headers: {
+    //     Accept: "application/json",
+    //     Authorization: "Bearer ",
+    //     "Content-Type": "application/json"
+    //   },
+    // }).then(function(response) {
+    //   console.log(response,'response')
     // })
-    // .then(({ results }) => this.setState({ players: results }));
-
-    /**
-     * curl -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer " https://www.formstack.com/api/v2/form/3460051/submission.json?
-data=true\&page=1\&per_page=100\
-
-     */
   }
 
   render() {
@@ -111,10 +100,6 @@ data=true\&page=1\&per_page=100\
               <RefreshIcon className={classes.rightIcon} />
               </Button>
             </div>
-
-          {/* <Iframe url="https://argarbarino.formstack.com/forms/truthordare"
-          // could put it in other page?
-            /> */}
           <List>
             {this.state.players.map((item, i) => (
               <ListItem button key={i} className={
