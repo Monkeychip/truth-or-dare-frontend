@@ -64,22 +64,23 @@ class PermanentDrawerRight extends React.Component {
   }
 
   UserList = () => {
-    // const url = 'https://www.formstack.com/api/v2/form/3460051/submission.json';
-    // fetch(url, {
-    //   method: 'GET',
-    //   headers: {
-    //     Accept: "application/json",
-    //     Authorization: "Bearer ",
-    //     "Content-Type": "application/json"
-    //   },
-    // }).then(function(response) {
-    //   console.log(response,'response')
-    // })
+    fetch('http://localhost:5000/play')
+    .then(response => {
+      return response.json();
+    })
+    .then(myJson => {
+      this.setState({players: myJson});
+    })
   }
+
+  
 
   render() {
     const { classes } = this.props;
-    console.log(this.state.players,'players')
+    if(this.state.players){
+      console.log(this.state.players.map(player => player.name))
+    }
+    
     return (
       <div className={classes.root}>
         <Drawer
@@ -101,17 +102,18 @@ class PermanentDrawerRight extends React.Component {
               </Button>
             </div>
           <List>
-            {this.state.players.map((item, i) => (
-              <ListItem button key={i} className={
-                classNames(
-                  classes.listItem, 
-                  // {[classes.selected]: item.gender === 'male'} // ARG: change based on person
-                )
-              }>
-                {/* <Avatar alt={item.name.first} src={item.picture.medium} /> */}
-                <ListItemText primary={item.data.value} className={classes.playerName}/>
-              </ListItem>
-            ))}
+             { this.state.players &&
+                this.state.players.map((player, i) => (
+                  <ListItem button key={i} className={
+                    classNames(
+                    classes.listItem, 
+                    {[classes.selected]: i === 0}
+                    )
+                  }>
+                    <ListItemText primary={player.name} className={classes.playerName}/>
+                  </ListItem>
+               ))
+            }
           </List>
         </Drawer>
       </div>
