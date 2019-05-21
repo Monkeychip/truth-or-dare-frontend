@@ -35,6 +35,7 @@ const styles = theme => ({
   },
   playerList: {
     margin: 10,
+    overflowY: 'auto',
   },
   playerName: {
     textTransform: 'capitalize',
@@ -42,6 +43,11 @@ const styles = theme => ({
   selected: {
     backgroundColor: '#ff0077',
     borderRadius: 50,
+  },
+  smallerIcon: {
+    color: '#888',
+    textTransform: 'capitalize',
+    fontStyle: 'italic',
   },
   titleBar: {
     display: "flex",
@@ -54,32 +60,11 @@ const styles = theme => ({
 class PermanentDrawerRight extends React.Component {
 
   state = {
-    players: [],
     currentPlayer: false,
   }
 
-  componentDidMount() {
-    // this.UserList();
-  }
-
-  // UserList = () => {
-  //   fetch('http://localhost:5000/play')
-  //   .then(response => {
-  //     return response.json();
-  //   })
-  //   .then(myJson => {
-  //     return myJson.sort( () => Math.random() - 0.5);
-  //   })
-  //   .then(shuffled => {
-  //     this.setState({players: shuffled});
-  //   })
-  // }
-
-  
-
   render() {
-    const { classes, players } = this.props;
-    console.log(this.props.players)
+    const { classes, players, updatePlayers, reshufflePlayers } = this.props;
     return (
       <div className={classes.root}>
         <Drawer
@@ -95,14 +80,18 @@ class PermanentDrawerRight extends React.Component {
               <Typography variant="h5" gutterBottom className={classes.players}>
                 Players
               </Typography>
-              <Button className={classes.button} onClick={this.UserList}>
+              <Button className={classes.button} onClick={updatePlayers}>
                 Refresh List
-              <RefreshIcon className={classes.rightIcon} />
+              <RefreshIcon />
+              </Button>
+              <Button className={classes.smallerIcon} onClick={reshufflePlayers}>
+                Reshuffle List
+              <RefreshIcon />
               </Button>
             </div>
           <List className={classes.playerList}>
-             { this.props.players &&
-                this.props.players.map((player, i) => (
+             { players &&
+                players.map((player, i) => (
                   <ListItem button key={i} className={
                     classNames(
                     classes.listItem, 

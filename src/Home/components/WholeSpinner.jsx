@@ -100,7 +100,7 @@ class WholeSpinner extends React.Component {
     });
   }
 
-  UserList = () => {
+  userList = () => {
     fetch('http://localhost:5000/play')
     .then(response => {
       return response.json();
@@ -115,8 +115,14 @@ class WholeSpinner extends React.Component {
     })
   }
 
+  reshufflePlayers = () => {
+    const { players } = this.state;
+    let shuffled = players.sort( () => Math.random() - 0.5); 
+    this.setState({ players: shuffled})
+  }
+
   componentDidMount() {
-    this.UserList();
+    this.userList();
     const { truthOrDare, openingQuestionList} = this.state;
     if(truthOrDare === 'opening') {
       this.setState({
@@ -162,7 +168,7 @@ class WholeSpinner extends React.Component {
           questionAnswered={this.markQuestionAsAnswered}
         />
         {players.length > 0 &&
-          <SidePanel players={players}/>
+          <SidePanel players={players} updatePlayers={this.userList} reshufflePlayers={this.reshufflePlayers}/>
         }
         <div id="wheel">
           <div id="innerWheel" style={styles}>
