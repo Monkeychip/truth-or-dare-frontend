@@ -8,7 +8,7 @@ const dareQuestions = {
     longtitle : 'Call a relative on the phone and moo like a cow.' }
     ,{ shorttitle : 'I am you',
     key : 3,
-    longtitle : 'Pretend to be another ‘Stacker for  seconds' }
+    longtitle : 'Pretend to be another ‘Stacker for 30 seconds' }
     ,{ shorttitle : 'No hands',
     key : 4,
     longtitle : 'For the rest of the game wear your shoes on your hands.' }
@@ -20,7 +20,7 @@ const dareQuestions = {
     longtitle : 'Pretend that you are a robot until your next turn.' }
     ,{ shorttitle : 'Qué?',
     key : 7,
-    longtitle : 'Tell us about Formstack with a fake accent for  seconds.' }
+    longtitle : 'Tell us about Formstack with a fake accent for 20 seconds.' }
     ,{ shorttitle : 'Just dance',
     key : 8,
     longtitle : 'Dance with no music for one minute' }
@@ -35,7 +35,7 @@ const dareQuestions = {
     longtitle : 'Sing "I’m a Little Teapot" with all the actions.' }
     ,{ shorttitle : 'Gobble gobble',
     key : 12,
-    longtitle : 'Make sounds like a turkey for  seconds.' }
+    longtitle : 'Make sounds like a turkey for 30 seconds.' }
     ,{ shorttitle : 'Fame',
     key : 13,
     longtitle : 'Do your best famous person impression or famous character impression.' }
@@ -44,13 +44,13 @@ const dareQuestions = {
     longtitle : 'Give us your best snort!' }
     ,{ shorttitle : 'One man band',
     key : 15,
-    longtitle : 'Give a concert with your air guitar. (we could have a song queued)' }
+    longtitle : 'Give a concert with your air guitar. 🎸' }
     ,{ shorttitle : 'Butter',
     key : 16,
     longtitle : 'Eat a teaspoon of butter.' }
     ,{ shorttitle : 'stilettos',
     key : 17,
-    longtitle : 'For guys: briefly walk like a lady in high heels.' }
+    longtitle : 'For guys: briefly walk like a lady in high heels 👠.' }
     ,{ shorttitle : 'Sing with me',
     key : 18,
     longtitle : 'Sing the alphabet without moving your mouth.' }
@@ -68,7 +68,7 @@ const dareQuestions = {
     longtitle : 'Stand up and do your best impersonation of the person on your right.' }
     ,{ shorttitle : 'Puppy love',
     key : 23,
-    longtitle : 'Imagine the person to your left is your pet talk to them as though you just got home.' }
+    longtitle : 'Imagine the person to your left is your pet.  Talk to them as though you just got home.' }
     ,{ shorttitle : 'Spicy',
     key : 24,
     longtitle : 'Eat a spoonful of hot sauce.' }
@@ -77,19 +77,19 @@ const dareQuestions = {
     longtitle : 'Call Burger King and ask if they sell big macs.' }
     ,{ shorttitle : 'Arms wide open',
     key : 26,
-    longtitle : 'Sing happy birthday in the style of Creed and/or Pearl Jam' }
+    longtitle : 'Sing happy birthday 🥳 in the style of Creed and/or Pearl Jam' }
     ,{ shorttitle : 'Belieber',
     key : 27,
     longtitle : 'Call someone and confess your new-found love for Justin Beiber.' }
     ,{ shorttitle : 'Molly Shannon',
     key : 28,
-    longtitle : 'Rub your armpits and then smell your fingers.' }
+    longtitle : 'Rub your armpits and then smell your fingers 🤲.' }
     ,{ shorttitle : 'Do it.',
     key : 29,
     longtitle : 'Change your Slack name to @captainbedwetter' }
     ,{ shorttitle : 'Goofy',
     key : 30,
-    longtitle : 'Hang your socks from your ears until the end of the game.' }
+    longtitle : 'Hang your socks 🧦 from your ears until the end of the game.' }
     ,{ shorttitle : 'Kris Kross',
     key : 31,
     longtitle : 'Wear your shirt backward for the duration of the game.' }
@@ -113,7 +113,7 @@ const dareQuestions = {
     longtitle : 'Give the person to your left a nickname.' }
     ,{ shorttitle : 'Whaaaat?',
     key : 38,
-    longtitle : 'Sing your favorite song as loud as you can.' }
+    longtitle : 'Sing 🎤 your favorite song as loud as you can.' }
     ,{ shorttitle : 'Drink up',
     key : 39,
     longtitle : 'Spill a glass of water on your head' }
@@ -137,7 +137,7 @@ const dareQuestions = {
     longtitle : 'Do not blink for 20 seconds' }
     ,{ shorttitle : 'I love lamp',
     key : 46,
-    longtitle : 'Have a  second 20 conversation with something sitting on your desk.' }
+    longtitle : 'Have a 20 second conversation with something sitting on your desk.' }
     ,{ shorttitle : 'Motley Crue',
     key : 47,
     longtitle : 'Describe this group of people in 5 words or less.' }
@@ -146,7 +146,7 @@ const dareQuestions = {
     longtitle : 'Give a compliment to the person on your left.' }
     ,{ shorttitle : 'Spooning',
     key : 49,
-    longtitle : 'Balance a spoon on your nose for as long as you can' }
+    longtitle : 'Balance a spoon 🥄 on your nose for as long as you can' }
     ,{ shorttitle : 'Who’s who',
     key : 50,
     longtitle : 'Imitate another ‘Stacker and let the group guess who you are.' }

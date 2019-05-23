@@ -19,7 +19,7 @@ class WholeSpinner extends React.Component {
   	super(props);
     
     this.state = { 
-      truthOrDare: 'opening',
+      truthOrDare: 'spin',
       degrees: 0, // parent starts degrees at 1800
       firstSix: [],
       modalStatus: false, // keep modal closed for now
@@ -124,7 +124,7 @@ class WholeSpinner extends React.Component {
   componentDidMount() {
     this.userList();
     const { truthOrDare, openingQuestionList} = this.state;
-    if(truthOrDare === 'opening') {
+    if(truthOrDare === 'spin') {
       this.setState({
         firstSix: openingQuestionList
       })
@@ -184,6 +184,7 @@ class WholeSpinner extends React.Component {
             startSpinner={this.startWheelSpin}
             degrees={degrees}
             firstSixPassingDown={firstSix}
+            truthOrDare={truthOrDare}
           />
         </div>
       </div>

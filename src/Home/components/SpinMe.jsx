@@ -56,7 +56,7 @@ class SpinMe extends React.Component {
   	return (
       <Spinner id="spin" onClick={this.onSpinnerClick}>
           <div id="innerSpin">
-            <p>SPIN</p>
+            <p>{this.props.truthOrDare}</p>
           </div>
       </Spinner>
     );

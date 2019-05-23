@@ -133,10 +133,16 @@ body {
 	left: 29px;
 }
 
+#innerSpin {
+	display: flex;
+	justify-content: center;
+}
+
 #innerSpin > p{
 	color: white;
-	margin: 35px 0px 0px 28px;
+	margin-top: 35px;
 	font-size: 20px;
+	text-transform: uppercase;
 }
 
 #inner-spin {
