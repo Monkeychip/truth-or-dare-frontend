@@ -17,6 +17,7 @@ const styles = theme => ({
     fontSize: 21,
     lineHeight: '21px',
     marginTop: -15,
+    cursor: 'pointer',
   }
 });
 // SUB COMPONENT
